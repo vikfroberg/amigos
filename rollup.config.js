@@ -17,7 +17,7 @@ export default [
       resolve(),
       babel({
         babelrc: false,
-        exclude: "node_modules/**",
+        exclude: "**/node_modules/**",
         presets: [["es2015", { modules: false }], "stage-0", "react"],
         plugins: ["external-helpers"],
       }),
@@ -34,7 +34,7 @@ export default [
     plugins: [
       babel({
         babelrc: false,
-        exclude: "node_modules/**",
+        exclude: "**/node_modules/**",
         presets: [["es2015", { modules: false }], "stage-0", "react"],
         plugins: ["external-helpers"],
       }),
