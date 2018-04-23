@@ -5,6 +5,8 @@ const Cmd = fork => ({
   key: key++,
 });
 
+Cmd.none = Cmd(() => {});
+
 Cmd.fromPromise = (resFn, rejFn, promise) =>
   Cmd(fork => {
     let isCancelled = false;

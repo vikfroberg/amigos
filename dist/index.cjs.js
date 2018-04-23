@@ -15,6 +15,8 @@ var Cmd = function Cmd(fork) {
   };
 };
 
+Cmd.none = Cmd(function () {});
+
 Cmd.fromPromise = function (resFn, rejFn, promise) {
   return Cmd(function (fork) {
     var isCancelled = false;
