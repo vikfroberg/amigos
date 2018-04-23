@@ -5,7 +5,7 @@ const Cmd = fork => ({
   key: key++,
 });
 
-Cmd.none = Cmd(() => {});
+Cmd.none = Cmd(() => () => {});
 
 Cmd.fromPromise = (resFn, rejFn, promise) =>
   Cmd(fork => {

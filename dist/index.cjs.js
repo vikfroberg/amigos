@@ -15,7 +15,9 @@ var Cmd = function Cmd(fork) {
   };
 };
 
-Cmd.none = Cmd(function () {});
+Cmd.none = Cmd(function () {
+  return function () {};
+});
 
 Cmd.fromPromise = function (resFn, rejFn, promise) {
   return Cmd(function (fork) {
