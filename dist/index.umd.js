@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-  (factory((global.amigos = {}),global.React));
+  (factory((global.Amigos = {}),global.React));
 }(this, (function (exports,React) { 'use strict';
 
   React = React && React.hasOwnProperty('default') ? React['default'] : React;
@@ -175,7 +175,7 @@
           args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Program.__proto__ || Object.getPrototypeOf(Program)).call.apply(_ref, [this].concat(args))), _this), _this.state = init(_this.props), _this.dispatch = function (fn) {
+        return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Program.__proto__ || Object.getPrototypeOf(Program)).call.apply(_ref, [this].concat(args))), _this), _this.state = { model: init(_this.props) }, _this.dispatch = function (fn) {
           _this.setState(function (state) {
             return { model: fn(state.model) };
           });

@@ -169,7 +169,7 @@ var createProgram = function createProgram(init, Component) {
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Program.__proto__ || Object.getPrototypeOf(Program)).call.apply(_ref, [this].concat(args))), _this), _this.state = init(_this.props), _this.dispatch = function (fn) {
+      return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Program.__proto__ || Object.getPrototypeOf(Program)).call.apply(_ref, [this].concat(args))), _this), _this.state = { model: init(_this.props) }, _this.dispatch = function (fn) {
         _this.setState(function (state) {
           return { model: fn(state.model) };
         });

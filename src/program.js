@@ -5,7 +5,7 @@ const { Provider, Consumer } = React.createContext(() => {});
 
 export const createProgram = (init, Component) => {
   return class Program extends React.Component {
-    state = init(this.props);
+    state = { model: init(this.props) };
     dispatch = fn => {
       this.setState(state => ({ model: fn(state.model) }));
     };
