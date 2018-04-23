@@ -4,7 +4,7 @@ import { ConsumerToHoc } from "./helpers";
 const { Provider, Consumer } = React.createContext(() => {});
 
 export const createProgram = (init, Component) => {
-  class Program extends React.Component {
+  return class Program extends React.Component {
     state = init(this.props);
     dispatch = fn => {
       this.setState(state => ({ model: fn(state.model) }));
@@ -16,7 +16,7 @@ export const createProgram = (init, Component) => {
         </Provider>
       );
     }
-  }
+  };
 };
 
 class Command extends React.Component {
