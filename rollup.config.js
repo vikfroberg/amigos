@@ -14,6 +14,7 @@ export default [
     },
     external: ["react"],
     plugins: [
+      resolve(),
       babel({
         babelrc: false,
         exclude: "node_modules/**",
@@ -21,7 +22,6 @@ export default [
         plugins: ["external-helpers"],
       }),
       commonjs(),
-      resolve(),
     ],
   },
   {

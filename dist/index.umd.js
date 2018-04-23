@@ -2,9 +2,9 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
   (factory((global.amigos = {}),global.React));
-}(this, (function (exports,React$1) { 'use strict';
+}(this, (function (exports,React) { 'use strict';
 
-  React$1 = React$1 && React$1.hasOwnProperty('default') ? React$1['default'] : React$1;
+  React = React && React.hasOwnProperty('default') ? React['default'] : React;
 
   var key = 0;
 
@@ -140,7 +140,7 @@
     );
   };
 
-  var _React$createContext = React$1.createContext(function () {}),
+  var _React$createContext = React.createContext(function () {}),
       Provider = _React$createContext.Provider,
       Consumer = _React$createContext.Consumer;
 
@@ -169,16 +169,16 @@
       createClass(Program, [{
         key: "render",
         value: function render() {
-          return React$1.createElement(
+          return React.createElement(
             Provider,
             { value: this.dispatch },
-            React$1.createElement(Component, { model: this.state.model, dispatch: this.dispatch }),
+            React.createElement(Component, { model: this.state.model, dispatch: this.dispatch }),
             ";"
           );
         }
       }]);
       return Program;
-    }(React$1.Component);
+    }(React.Component);
   };
 
   var Command = function (_React$Component2) {
@@ -224,7 +224,7 @@
       }
     }]);
     return Command;
-  }(React$1.Component);
+  }(React.Component);
 
   var Commander = ConsumerToHoc(Consumer, "dispatch", Command);
 

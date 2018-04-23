@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React$1 = _interopDefault(require('react'));
+var React = _interopDefault(require('react'));
 
 var key = 0;
 
@@ -140,7 +140,7 @@ var ConsumerToHoc = function ConsumerToHoc(ComposedConsumer, prop, ComposedCompo
   );
 };
 
-var _React$createContext = React$1.createContext(function () {}),
+var _React$createContext = React.createContext(function () {}),
     Provider = _React$createContext.Provider,
     Consumer = _React$createContext.Consumer;
 
@@ -169,16 +169,16 @@ var createProgram = function createProgram(init, Component) {
     createClass(Program, [{
       key: "render",
       value: function render() {
-        return React$1.createElement(
+        return React.createElement(
           Provider,
           { value: this.dispatch },
-          React$1.createElement(Component, { model: this.state.model, dispatch: this.dispatch }),
+          React.createElement(Component, { model: this.state.model, dispatch: this.dispatch }),
           ";"
         );
       }
     }]);
     return Program;
-  }(React$1.Component);
+  }(React.Component);
 };
 
 var Command = function (_React$Component2) {
@@ -224,7 +224,7 @@ var Command = function (_React$Component2) {
     }
   }]);
   return Command;
-}(React$1.Component);
+}(React.Component);
 
 var Commander = ConsumerToHoc(Consumer, "dispatch", Command);
 
