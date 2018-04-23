@@ -145,7 +145,7 @@
       Consumer = _React$createContext.Consumer;
 
   var createProgram = function createProgram(init, Component) {
-    var Program = function (_React$Component) {
+    return function (_React$Component) {
       inherits(Program, _React$Component);
 
       function Program() {
