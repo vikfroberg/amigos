@@ -12,7 +12,7 @@ export const createProgram = (init, Component) => {
     render() {
       return (
         <Provider value={this.dispatch}>
-          <Component model={this.state.model} dispatch={this.dispatch} />;
+          <Component model={this.state.model} dispatch={this.dispatch} />
         </Provider>
       );
     }

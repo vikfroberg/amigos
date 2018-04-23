@@ -166,8 +166,7 @@ var createProgram = function createProgram(init, Component) {
         return React.createElement(
           Provider,
           { value: this.dispatch },
-          React.createElement(Component, { model: this.state.model, dispatch: this.dispatch }),
-          ";"
+          React.createElement(Component, { model: this.state.model, dispatch: this.dispatch })
         );
       }
     }]);
