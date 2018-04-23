@@ -100,6 +100,20 @@ var defineProperty = function (obj, key, value) {
   return obj;
 };
 
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
 var inherits = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
@@ -125,13 +139,15 @@ var possibleConstructorReturn = function (self, call) {
 };
 
 var ConsumerToHoc = function ConsumerToHoc(ComposedConsumer, prop, ComposedComponent) {
-  return React.createElement(
-    ComposedConsumer,
-    null,
-    function (value) {
-      return React.createElement(ComposedComponent, defineProperty({}, prop, value));
-    }
-  );
+  return function (props) {
+    return React.createElement(
+      ComposedConsumer,
+      null,
+      function (value) {
+        return React.createElement(ComposedComponent, _extends({}, props, defineProperty({}, prop, value)));
+      }
+    );
+  };
 };
 
 var _React$createContext = React.createContext(function () {}),

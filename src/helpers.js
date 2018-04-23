@@ -1,7 +1,11 @@
 import React from "react";
 
-export const ConsumerToHoc = (ComposedConsumer, prop, ComposedComponent) => (
+export const ConsumerToHoc = (
+  ComposedConsumer,
+  prop,
+  ComposedComponent,
+) => props => (
   <ComposedConsumer>
-    {value => <ComposedComponent {...{ [prop]: value }} />}
+    {value => <ComposedComponent {...props} {...{ [prop]: value }} />}
   </ComposedConsumer>
 );
