@@ -4,9 +4,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
-  "dependencies": {
-    "np": "^2.20.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "^16.0.0-0"
   },
@@ -19,14 +17,13 @@
     "rollup": "^0.57.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "np": "^2.20.1"
   },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "release": "rollup -c; np"
   },
-  "files": [
-    "dist"
-  ]
+  "files": ["dist"]
 }
