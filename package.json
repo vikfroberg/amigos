@@ -1,6 +1,6 @@
 {
   "name": "amigos",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
@@ -26,5 +26,7 @@
     "dev": "rollup -c -w",
     "release": "rollup -c; np"
   },
-  "files": ["dist"]
+  "files": [
+    "dist"
+  ]
 }
