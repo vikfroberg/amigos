@@ -23,9 +23,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "release": "rollup -c; np"
+    "release": "rollup -c; np",
+    "patch": "rollup -c; np patch"
   },
-  "files": [
-    "dist"
-  ]
+  "files": ["dist"]
 }
