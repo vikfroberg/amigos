@@ -11,19 +11,62 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      const onChangeName = name => model => ({ ...model, name });
+      const Cmd = Amigos.Cmd;
+      const Commander = Amigos.Commander;
+      const Fragment = React.Fragment;
+      const pipe = (...fns) => x => fns.reduce((acc, fn) => fn(acc), x);
 
-      const View = ({ model, dispatch }) => {
-        return (
-          <input
-            type="text"
-            onChange={x => dispatch(onChangeName(x.target.value))}
-            value={model.name}
-          />
-        )
+      const getUsername = () =>
+        new Promise((resolve, reject) => resolve("vikfroberg"))
+
+      const getUsernameF= () =>
+        new Promise((resolve, reject) => reject("vikfroberg"))
+
+      function init() {
+        return {
+          name: "",
+          command: Cmd.fromPromise(
+            getReposSuccess,
+            getReposFailure,
+            getUsernameF,
+          ),
+        };
+      }
+
+      const getReposSuccess = name => model => {
+        return { ...model, name };
       };
 
-      const App = Amigos.createProgram(() => ({ name: "Viktor" }), View);
+      const getReposFailure = err => model => {
+        return {
+          ...model,
+          name: "",
+          command: Cmd.fromPromise(
+            getReposSuccess,
+            getReposFailure,
+            getUsername,
+          ),
+        };
+      };
+
+      const onChangeName = name => model => ({ ...model, name });
+
+      const targetValue = x => x.target.value;
+
+      function View({ model, dispatch }) {
+        return (
+          <Fragment>
+            <input
+              type="text"
+              value={model.name}
+              onChange={pipe(targetValue, onChangeName, dispatch)}
+            />
+            <Commander command={model.command} onFork={dispatch} />
+          </Fragment>
+        );
+      }
+
+      const App = Amigos.createProgram(init, View);
 
       ReactDOM.render(
         <App />,

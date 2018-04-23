@@ -85,35 +85,6 @@ var createClass = function () {
   };
 }();
 
-var defineProperty = function (obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
 var inherits = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
@@ -137,22 +108,6 @@ var possibleConstructorReturn = function (self, call) {
 
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
-
-var ConsumerToHoc = function ConsumerToHoc(ComposedConsumer, prop, ComposedComponent) {
-  return function (props) {
-    return React.createElement(
-      ComposedConsumer,
-      null,
-      function (value) {
-        return React.createElement(ComposedComponent, _extends({}, props, defineProperty({}, prop, value)));
-      }
-    );
-  };
-};
-
-var _React$createContext = React.createContext(function () {}),
-    Provider = _React$createContext.Provider,
-    Consumer = _React$createContext.Consumer;
 
 var createProgram = function createProgram(init, Component) {
   return function (_React$Component) {
@@ -179,26 +134,22 @@ var createProgram = function createProgram(init, Component) {
     createClass(Program, [{
       key: "render",
       value: function render() {
-        return React.createElement(
-          Provider,
-          { value: this.dispatch },
-          React.createElement(Component, { model: this.state.model, dispatch: this.dispatch })
-        );
+        return React.createElement(Component, { model: this.state.model, dispatch: this.dispatch });
       }
     }]);
     return Program;
   }(React.Component);
 };
 
-var Command = function (_React$Component2) {
-  inherits(Command, _React$Component2);
+var Commander = function (_React$Component2) {
+  inherits(Commander, _React$Component2);
 
-  function Command() {
-    classCallCheck(this, Command);
-    return possibleConstructorReturn(this, (Command.__proto__ || Object.getPrototypeOf(Command)).apply(this, arguments));
+  function Commander() {
+    classCallCheck(this, Commander);
+    return possibleConstructorReturn(this, (Commander.__proto__ || Object.getPrototypeOf(Commander)).apply(this, arguments));
   }
 
-  createClass(Command, [{
+  createClass(Commander, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.fork();
@@ -209,9 +160,9 @@ var Command = function (_React$Component2) {
       this.cancel();
     }
   }, {
-    key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate(nextProps) {
-      if (this.props.command.key !== nextProps.command) {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.command.key !== prevProps.command.key) {
         this.cancel();
         this.fork();
       }
@@ -219,7 +170,7 @@ var Command = function (_React$Component2) {
   }, {
     key: "fork",
     value: function fork() {
-      this.command = this.props.command.fork(this.dispatch);
+      this.command = this.props.command.fork(this.props.onFork);
     }
   }, {
     key: "cancel",
@@ -232,9 +183,7 @@ var Command = function (_React$Component2) {
       return null;
     }
   }]);
-  return Command;
+  return Commander;
 }(React.Component);
-
-var Commander = ConsumerToHoc(Consumer, "dispatch", Command);
 
 export { Cmd, createProgram, Commander };

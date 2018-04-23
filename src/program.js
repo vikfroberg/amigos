@@ -1,7 +1,4 @@
 import React from "react";
-import { ConsumerToHoc } from "./helpers";
-
-const { Provider, Consumer } = React.createContext(() => {});
 
 export const createProgram = (init, Component) => {
   return class Program extends React.Component {
@@ -10,30 +7,26 @@ export const createProgram = (init, Component) => {
       this.setState(state => ({ model: fn(state.model) }));
     };
     render() {
-      return (
-        <Provider value={this.dispatch}>
-          <Component model={this.state.model} dispatch={this.dispatch} />
-        </Provider>
-      );
+      return <Component model={this.state.model} dispatch={this.dispatch} />;
     }
   };
 };
 
-class Command extends React.Component {
+export class Commander extends React.Component {
   componentDidMount() {
     this.fork();
   }
   componentWillUnmount() {
     this.cancel();
   }
-  shouldComponentUpdate(nextProps) {
-    if (this.props.command.key !== nextProps.command) {
+  componentDidUpdate(prevProps) {
+    if (this.props.command.key !== prevProps.command.key) {
       this.cancel();
       this.fork();
     }
   }
   fork() {
-    this.command = this.props.command.fork(this.dispatch);
+    this.command = this.props.command.fork(this.props.onFork);
   }
   cancel() {
     this.command();
@@ -42,5 +35,3 @@ class Command extends React.Component {
     return null;
   }
 }
-
-export const Commander = ConsumerToHoc(Consumer, "dispatch", Command);
