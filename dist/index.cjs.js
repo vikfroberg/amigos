@@ -95,6 +95,20 @@ var createClass = function () {
   };
 }();
 
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
 var inherits = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
@@ -144,7 +158,10 @@ var createProgram = function createProgram(init, Component) {
     createClass(Program, [{
       key: "render",
       value: function render() {
-        return React.createElement(Component, { model: this.state.model, dispatch: this.dispatch });
+        return React.createElement(Component, _extends({}, this.props, {
+          model: this.state.model,
+          dispatch: this.dispatch
+        }));
       }
     }]);
     return Program;

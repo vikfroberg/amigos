@@ -7,7 +7,13 @@ export const createProgram = (init, Component) => {
       this.setState(state => ({ model: fn(state.model) }));
     };
     render() {
-      return <Component model={this.state.model} dispatch={this.dispatch} />;
+      return (
+        <Component
+          {...this.props}
+          model={this.state.model}
+          dispatch={this.dispatch}
+        />
+      );
     }
   };
 };
