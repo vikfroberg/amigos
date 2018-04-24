@@ -26,6 +26,7 @@ export class Commander extends React.Component {
     }
   }
   fork() {
+    this.props.onChange();
     this.command = this.props.command.fork(this.props.onFork);
   }
   cancel() {

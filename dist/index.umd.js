@@ -180,6 +180,7 @@
     }, {
       key: "fork",
       value: function fork() {
+        this.props.onChange();
         this.command = this.props.command.fork(this.props.onFork);
       }
     }, {
